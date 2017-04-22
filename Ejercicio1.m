@@ -1,9 +1,4 @@
 f = @(t,y) 2*(t+1)*y;
-% faux = @(y,h,tiempo, posicion) y - (h*feval(f,tiempo, y)+ posicion);
-% tiempo = 1/10;
-% h = 1/10;
-% posicion = 1;
-% faux(1,h,tiempo,posicion)
 
 I = [0,1];
 y0 = 1;
@@ -11,11 +6,7 @@ t0 = I(1);
 I = [0,1];
 n = 10;
 
-[Tn, Wn] = mEulerImplicit(f,y0, I, n);
-Wn
 [Tn, Wn] = mEuler(f,y0, I, n);
-Wn
-[Tn, Wn] = mRK4(f,y0, I, n);
 Wn
 
 yt = @(y0,t0,t) y0*exp(t^2 - t0 +2*( t -t0 ));
