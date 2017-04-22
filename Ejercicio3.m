@@ -1,0 +1,76 @@
+clc;
+format long;
+
+e = exp(1);
+f1 = @(t,y1,y2) -y1 + y2;
+f2 = @(t,y1,y2) -y1 - y2;
+y1 = @(t) e^(-t)*sin(t);
+y2 = @(t) e^(-t)*cos(t);
+
+wi_1 = 0;
+wi_2 = 1;
+
+%Para el paso h = 1/10
+W1(1)=wi_1;
+W2(1)=wi_2;
+
+h=1/10;
+ti=0;
+Tn(1)=ti;
+
+for i = 1:10
+    [ti,wi_1,wi_2] = mPMedio2(f1,f2, wi_1, wi_2, ti, h);
+    W1(i+1)=wi_1;
+    W2(i+1)=wi_2;
+    Tn(i+1)=ti;
+end
+
+for i=1:11
+    res1(i)=feval(y1,h*(i-1));
+    res2(i)=feval(y2,h*(i-1));
+end
+
+err1=abs(W1-res1);
+err2=abs(W2-res2);
+
+%Para el paso h=1/100
+wi_1 = 0;
+wi_2 = 1;
+
+W3(1)=wi_1;
+W4(1)=wi_2;
+
+h=1/100;
+ti=0;
+Tn2(1)=ti;
+
+for i = 1:100
+    [ti,wi_1,wi_2] = mPMedio2(f1,f2, wi_1, wi_2, ti, h);
+    W3(i+1)=wi_1;
+    W4(i+1)=wi_2;
+    Tn2(i+1)=ti;
+end
+
+for i=1:101
+    res3(i)=feval(y1,h*(i-1));
+    res4(i)=feval(y2,h*(i-1));
+end
+
+err3=abs(W3-res3);
+err4=abs(W4-res4);
+
+Y1 = [err1(11); err3(101)];
+Y2 = [err2(11); err4(101)];
+Step = {'h=1/10'; 'h=1/100'};
+
+%La disminución del error es consitente ya que como el paso se 
+%disminuye 10 veces y el orden del método es de orden 2 entonces
+%la reducción del error tiene que ser (1/4)^3.32= 1/100
+%ya que log2(10)=3.32. Este cálculo proviene de que si se disminuye
+%el paso a la mitad entonces el error se reducirá aproximadamente en
+%1/(2^p) donde p es el órden del método. 
+T = table(Y1,Y2,'RowNames', Step);
+disp(T)
+
+
+

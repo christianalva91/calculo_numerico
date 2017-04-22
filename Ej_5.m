@@ -71,6 +71,8 @@ Step = {'h=1/50'; 'h=1/100'; 'h=1/200'};
 T = table(Euler,Trapecio,PM,RK4,'RowNames', Step);
 disp(T)
 
+% pE = log(err50E(81)/err50E(80))/log((81/50)/(80/50))
+
 figure
 lim = 100;
 loglog(TnE1(1:lim), err50E(1:lim), TnT1(1:lim), err50T(1:lim), TnPM1(1:lim),err50PM(1:lim), TnRK1(1:lim), err50RK(1:lim))

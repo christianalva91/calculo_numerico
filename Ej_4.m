@@ -7,15 +7,12 @@ y0 = 1/2;
 h1 = 1/2;
 n1 = h_to_n(h1,interval);
 
-[Tn1, Wn1] = mEulerImplicit(fun, y0, interval ,n1);
-Wn1
+[Tn1, Wn1] = mEulerImplicit(fun1, y0, interval ,n1);
 
 h2 = 1/6;
 n2 = h_to_n(h2,interval);
 
 [Tn2, Wn2] = mEuler(fun, y0, interval ,n2);
-Wn2
-
 
 h3 = 1/5;
 n3 = h_to_n(h3,interval);
