@@ -74,7 +74,7 @@ disp(T)
 figure
 lim = 100;
 loglog(TnE1(1:lim), err50E(1:lim), TnT1(1:lim), err50T(1:lim), TnPM1(1:lim),err50PM(1:lim), TnRK1(1:lim), err50RK(1:lim))
-% 
+
 % figure
 % lim = 30;
 % plot(TnE1(1:lim), err50E(1:lim), TnT1(1:lim), err50T(1:lim), TnPM1(1:lim),err50PM(1:lim))
