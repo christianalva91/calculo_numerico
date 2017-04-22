@@ -12,37 +12,37 @@ n(2) = h_to_n(h(2), I);
 n(3) = h_to_n(h(3), I);
 
 t50 = h(1);
-for i = 1:n(1)
-    res50(i) = feval(sol, t50*i,1);
+for i = 1:n(1)+1
+    res50(i) = feval(sol, t50*(i-1),1);
   end
 
 t100 = h(2);
-for i = 1:n(2)
-    res100(i) =feval(sol, t100*i,1);
+for i = 1:n(2)+1
+    res100(i) =feval(sol, t100*(i-1),1);
 end
 
 t200 = h(3);
-for i = 1:n(3)
-    res200(i) =feval(sol, t200*i,1);
+for i = 1:n(3)+1
+    res200(i) =feval(sol, t200*(i-1),1);
 end
 
 [TnE1, WnE1] = mEuler(fun, y0, I ,n(1));
-[TnE2, WnE2] = mEuler(fun, y0, I ,n(2)-1);
-[TnE3, WnE3] = mEuler(fun, y0, I ,n(3)-1);
+[TnE2, WnE2] = mEuler(fun, y0, I ,n(2));
+[TnE3, WnE3] = mEuler(fun, y0, I ,n(3));
 
-[TnT1, WnT1] = mTrapecio(fun, y0, I, n(1)-1);
-[TnT2, WnT2] = mTrapecio(fun, y0, I, n(2)-1);
-[TnT3, WnT3] = mTrapecio(fun, y0, I, n(3)-1);
+[TnT1, WnT1] = mTrapecio(fun, y0, I, n(1));
+[TnT2, WnT2] = mTrapecio(fun, y0, I, n(2));
+[TnT3, WnT3] = mTrapecio(fun, y0, I, n(3));
 
-[TnPM1, WnPM1] = mPMedio(fun, y0, I, n(1)-1);
-[TnPM2, WnPM2] = mPMedio(fun, y0, I, n(2)-1);
-[TnPM3, WnPM3] = mPMedio(fun, y0, I, n(3)-1);
+[TnPM1, WnPM1] = mPMedio(fun, y0, I, n(1));
+[TnPM2, WnPM2] = mPMedio(fun, y0, I, n(2));
+[TnPM3, WnPM3] = mPMedio(fun, y0, I, n(3));
 
-[TnRK1, WnRK1] = mRK4(fun, y0, I, n(1)-1);
-[TnRK2, WnRK2] = mRK4(fun, y0, I, n(2)-1);
-[TnRK3, WnRK3] = mRK4(fun, y0, I, n(3)-1);
+[TnRK1, WnRK1] = mRK4(fun, y0, I, n(1));
+[TnRK2, WnRK2] = mRK4(fun, y0, I, n(2));
+[TnRK3, WnRK3] = mRK4(fun, y0, I, n(3));
 
-err50E = abs(res50-WnE1(2:101));
+err50E = abs(res50-WnE1);
 err50T  = abs(res50-WnT1);
 err50PM = abs(res50-WnPM1);
 err50RK = abs(res50-WnRK1);
@@ -72,8 +72,8 @@ T = table(Euler,Trapecio,PM,RK4,'RowNames', Step);
 disp(T)
 
 figure
-lim = 50;
-plot(TnE1(1:lim), err50E(1:lim), TnT1(1:lim), err50T(1:lim), TnPM1(1:lim),err50PM(1:lim), TnRK1(1:lim), err50RK(1:lim))
+lim = 100;
+loglog(TnE1(1:lim), err50E(1:lim), TnT1(1:lim), err50T(1:lim), TnPM1(1:lim),err50PM(1:lim), TnRK1(1:lim), err50RK(1:lim))
 % 
 % figure
 % lim = 30;

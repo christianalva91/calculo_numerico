@@ -58,8 +58,8 @@ for j = 1:6
     maxstep(j) = paso;
 end
 
-Distancia = transpose(h);
+Longitud_del_paso = transpose(h);
 Paso = transpose(maxstep);
 Error_local = transpose(Elocalh);
 
-T = table(Distancia, Paso, Error_local)
+T = table(Longitud_del_paso, Paso, Error_local)
