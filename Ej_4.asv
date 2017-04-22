@@ -1,0 +1,10 @@
+fun = @(x,t)5*x-3*x^2;
+interval = [0, 20];
+y0 = 1/2;
+h1 = 1/2;
+n1 = h_to_n(h1,interval);
+
+[Tn, Wn] = mEulerImplicit(fun, y0, interval ,n)
+
+
+[Tn, Wn] = mEuler(fun, y0, interval ,n)
