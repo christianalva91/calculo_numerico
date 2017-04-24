@@ -47,7 +47,7 @@ end
 [TnRK3, WnRK3] = mRK4(fun, y0, I, n(3));
 
 err50E = abs(res50-WnE1);
-err50EI =  abs(res50-WnEI1)
+err50EI =  abs(res50-WnEI1);
 err50T  = abs(res50-WnT1);
 err50PM = abs(res50-WnPM1);
 err50RK = abs(res50-WnRK1);
@@ -84,6 +84,10 @@ disp(T)
 figure
 lim = 100;
 loglog(TnE1(1:lim), err50E(1:lim),TnEI1(1:lim), err50EI(1:lim), TnT1(1:lim), err50T(1:lim), TnPM1(1:lim),err50PM(1:lim), TnRK1(1:lim), err50RK(1:lim))
+title('Error Global loglog');
+xlabel('Paso en el tiempo');
+ylabel('Error global');
+legend('Euler', 'Euler I.', 'Trapecio', 'P.M.', 'RK4');
 
 % figure
 % lim = 30;
