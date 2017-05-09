@@ -15,6 +15,10 @@ W1=m_heat_imp(Ix,It,M10,N10);
 gridSpace = linspace(Ix(1), Ix(2), M10+1);
 gridTime = linspace(It(1), It(2), N10+1);
 mesh(gridTime, gridSpace, W1, 'LineWidth',1.5);
+title('Ecuación de calor');
+xlabel('Tiempo');
+ylabel('Espacio');
+zlabel('Temperatura');
 
 %Parte 2
 
